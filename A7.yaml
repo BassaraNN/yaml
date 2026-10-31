@@ -1,0 +1,59 @@
+openapi: 3.0.4
+info:
+  title: Seat Booking API
+  version: 1.0.0
+  description: API for getting booking, and canceling an order
+
+servers:
+  - url: http://api.example.com/v1
+    description: Server storing seating info
+  
+
+paths:
+  /seat_bookings{bookingid}:
+    get:
+      summary: Get info about a seat booking
+      parameters: 
+        - in: path
+          name: bookingId
+          schema:
+            type: string
+      responses:
+        "200": 
+          description: Details of Booking successfully retrieved
+        "404:
+          description: Target booking does not exist
+    post:
+      summary: Create a new ooking
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                seatId: 
+                  type: string
+                showtime:
+                  type: string
+                user_email:
+                  type: string
+      responses:
+        "200":
+          description: Booking created
+        "409":
+          description: Seat is already booked by another user  
+    delete:
+        summary: Cancel a booking
+        responses:
+          "200": 
+            description: Booking successfuly canceled
+          "404":
+            description: Target booking does not exist 
+          "401":
+            description: User session expired
+        
+           
+
+          
+          
