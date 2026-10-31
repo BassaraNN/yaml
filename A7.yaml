@@ -10,20 +10,8 @@ servers:
   
 
 paths:
-  /seat_bookings{bookingid}:
-    get:
-      summary: Get info about a seat booking
-      parameters: 
-        - in: path
-          name: bookingId
-          schema:
-            type: string
-      responses:
-        "200": 
-          description: Details of Booking successfully retrieved
-        "404:
-          description: Target booking does not exist
-    post:
+  /seat_bookings:
+     post:
       summary: Create a new ooking
       requestBody:
         required: true
@@ -43,6 +31,20 @@ paths:
           description: Booking created
         "409":
           description: Seat is already booked by another user  
+  /seat_bookings{bookingid}:
+    get:
+      summary: Get info about a seat booking
+      parameters: 
+        - in: path
+          name: bookingId
+          schema:
+            type: string
+      responses:
+        "200": 
+          description: Details of Booking successfully retrieved
+        "404:
+          description: Target booking does not exist
+ 
     delete:
         summary: Cancel a booking
         responses:
